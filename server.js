@@ -11,6 +11,16 @@ app.get('/about', function(req, res)
     res.sendFile(__dirname+'/about.html');
   
 });
-  server.listen(process.env.PORT, process.env.IP, function(){
+app.get('/form', function(req, res) 
+  {
+    res.sendFile(__dirname+'/form.html');
+  
+});
+app.post('/signup', function(req, res) {
+    var username = req.body.username;
+    var email = req.body.email;
+    console.log("post received: %s %s", username, email);
+});
+server.listen(process.env.PORT, process.env.IP, function(){
     console.log('Server running');
-  });
+});
