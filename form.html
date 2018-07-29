@@ -1,11 +1,29 @@
-<form action="/signup" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/><br/>
-    </div>
-    <div>
-        <label>Email:</label>
-        <input type="text" name="email"/>
-    </div>
-    <div><input type="submit" value="signup"/></div>
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>An HTML Form</title>
+    </head>
+    <body>
+        <h1>User Detail</h1>
+        <input id = "name" type = "text"/>
+        <input id = "email" type = "email"/>
+        <button id = "submit">Submit</button>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            var user = {name: "", email: ""};
+            $('#submit').click(function () {
+                user.username = $('#name').val();
+                user.email = $('#email').val();
+                $.ajax ({
+                    method: "POST",
+                    url: "/submit_user",
+                    data: user
+                }).done (function (response) {
+                    console.log(response);
+                }).fail (function (response) {
+                    console.log(response); 
+                })
+            });
+        </script>
+    </body>    
+</html>
